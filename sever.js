@@ -38,6 +38,7 @@ class Server {
         this.app.use(express.json())
         
         this.app.use('/javascript', express.static(path.join(__dirname, 'public', 'javascript')))
+        this.app.use('/avatares', express.static(path.join(__dirname, 'public', 'avatares')))
         
         this.app.set('views', './views');
         this.app.set('view engine', 'ejs');
