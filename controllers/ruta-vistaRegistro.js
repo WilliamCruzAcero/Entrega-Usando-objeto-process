@@ -1,6 +1,6 @@
-const {response} = require('express');
+const {request, response} = require('express');
 
-const vistaRegistro = (res = response) => {
+const vistaRegistro = (req , res = response) => {
     res.render('formulario-registrar-usuario');
 };
 

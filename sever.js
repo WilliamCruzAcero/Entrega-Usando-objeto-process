@@ -111,18 +111,49 @@ class Server {
         
         this.app.post('/user', async (req, res) => {
     
-            const { username, password, name } = req.body;
+            const { name, lastname, age, phone, email, password, address, city, country } = req.body;
             
-            if (!username) {
+            if (!name) {
                 return res.status(StatusCodes.BAD_REQUEST).json( {
-                    error: `El nombre de usuario es requerido`
+                    error: 'El nombre es requerido'
                 });
             }
-    
-            var isEmailRegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-            if (!isEmailRegExp.test(username)) {
+            
+            if(!lastname) {
                 return res.status(StatusCodes.BAD_REQUEST).json( {
-                    error: 'El nombre de usuario debe ser un correo electrónico'
+                    error: 'El apellido en requerido'
+                })
+            }
+
+            if (!age) {
+                return res.status(StatusCodes.BAD_REQUEST).json( {
+                    error: 'La edad es requerida'
+                })
+            }
+            
+            if (!phone) {
+                return res.status(StatusCodes.BAD_REQUEST).json( {
+                    error: 'El número de teléfono es requerido'
+                })
+            }
+            var isPhoneRedExp = /^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/;
+            if (!isPhoneRedExp.test(phone)) {
+                return res.status(StatusCodes.BAD_REQUEST).json( {
+                    error: 'El numero de teléfono no es valido'
+                })
+
+            }
+
+            if (!email) {
+                return res.status(StatusCodes.BAD_REQUEST).json( {
+                    error: `El email es requerido`
+                });
+            }
+            
+            var isEmailRegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            if (!isEmailRegExp.test(email)) {
+                return res.status(StatusCodes.BAD_REQUEST).json( {
+                    error: 'El email debe ser un correo electrónico'
                 });
             }
     
@@ -131,18 +162,28 @@ class Server {
                     error: 'La contraseña es requerida'
                 });
             }
-    
-            if (!name) {
+            
+            if (!address) {
                 return res.status(StatusCodes.BAD_REQUEST).json( {
-                    error: 'El nombre es requerido'
-                });
+                    error: 'La dirección es requerida'
+                })
             }
-    
-            const usuarioExistente = await UsuarioModel.findOne({ username });
+            if (!city) {
+                return res.status(StatusCodes.BAD_REQUEST).json( {
+                    error: 'La ciudad es requerida'
+                })
+            }
+            if (!country) {
+                return res.status(StatusCodes.BAD_REQUEST).json( {
+                    error: 'El pais requerido'
+                })
+            }
+
+            const usuarioExistente = await UsuarioModel.findOne({ email });
     
             if (usuarioExistente?.username) {
                 return res.status(StatusCodes.BAD_REQUEST).json( {
-                    error: 'El nombre de usuario no está disponible'
+                    error: 'El email ya esta en uso'
                 });
             }
     
@@ -150,35 +191,41 @@ class Server {
             const hashedPassword = await bcrypt.hash(password, saltRounds)
     
             const nuevoUsuario = new UsuarioModel({
-                username,
-                password: hashedPassword,
                 name,
+                lastname,
+                age,
+                phone,
+                email,
+                password: hashedPassword,
+                address,
+                city,
+                country,
                 productos: []
             })
     
             await nuevoUsuario.save();
     
             res.json({
-                message: `Usuario ${username} registrado con exito` 
+                message: `Usuario ${email} registrado con exito` 
             })
         });
         
         this.app.post('/login', async (req, res) => {
-            const { username, password } = req.body;
+            const { email, password } = req.body;
             let user;
     
             try {
-                if (!username) {
-                    throw new WebError('El nombre de usuario es requerido', StatusCodes.BAD_REQUEST)
+                if (!email) {
+                    throw new WebError('El email de usuario es requerido', StatusCodes.BAD_REQUEST)
                 }
     
                 if (!password) {
                     throw new WebError('La contraseña es requerida', StatusCodes.BAD_REQUEST)
                 }
     
-                user = await UsuarioModel.findOne({ username });
+                user = await UsuarioModel.findOne({ email });
     
-                if (!user?.username) {
+                if (!user?.email) {
                     throw new WebError('El usuario no esta registrado', StatusCodes.UNAUTHORIZED);
                 }
     
@@ -196,12 +243,12 @@ class Server {
             }
     
             const tokenBody = {
-                username: user.username,
-                name: user.name            
+                email: user.email,
+                name: user.name,
             }
     
             const token = jwt.sign(tokenBody, secret, { expiresIn: '1h' });
-    
+               
             res.json({ token });
     
         });
@@ -209,8 +256,7 @@ class Server {
         this.app.post('/logout', verifyToken , (req, res) => {
     
             const { name } = req.secret
-    
-            res.render('mensaje', { mensaje: `¡Hasta luego ${name}!` })
+            res.render('mensaje', { mensaje: `Hasta luego ${name}` })
         
         });
     

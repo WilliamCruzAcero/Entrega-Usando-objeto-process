@@ -4,11 +4,11 @@ loginButton.addEventListener("click", obtenerToken);
 async function obtenerToken() {
 
     const url = "/login";
-    const userElement = document.getElementById('username');
-    const passwordElement = document.getElementById('password');
-    const username = userElement.value;
+    const emailElement = document.getElementById('emailUsuario');
+    const passwordElement = document.getElementById('passwordUsuario');
+    const email = emailElement.value;
     const password = passwordElement.value;
-    const data = { username, password }
+    const data = { email, password }
 
     const fetchConfig = {
         method: 'POST',

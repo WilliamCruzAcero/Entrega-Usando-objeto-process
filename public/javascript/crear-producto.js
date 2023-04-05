@@ -74,7 +74,8 @@ function parseJwt (token) {
 function cerrarSesion() {
     const token = localStorage.getItem('token')
     const {name} = parseJwt(token)
-    alert(`!Hasta luego ${name}¡`)
+    
+    alert(`Hasta luego ${name}`)
     localStorage.removeItem("token")
     window.location = '/'
     
