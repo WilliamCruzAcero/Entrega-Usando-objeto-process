@@ -1,11 +1,9 @@
 const {Router} = require('express');
-const { vistaRegistro } = require('../controllers/ruta-vistaregistro');
+const { vistaRegistro } = require('../controllers/ruta-vistaRegistro');
 
 
 const routes = Router();
 
-    routes.get('/user', vistaRegistro)
-    
-    
-    
+routes.get('/user', vistaRegistro)
+
 module.exports = routes;
