@@ -2,10 +2,39 @@
 const registrarUsuario = document.getElementById('registrarUsuario');
 registrarUsuario.addEventListener("click", guardarUsuario)
 
+const cambioAvatar = document.getElementById('avatarUsuario');
+const imagen = document.getElementById('imagen');
+
+
+cambioAvatar.addEventListener('change', async function(e) {
+    const file = e.target.files[0]; 
+    if (file) {
+       
+        const headersList = {
+        "Accept": "*/*"
+        }
+        
+        const bodyContent = new FormData();
+        bodyContent.append("avatar", file);
+        
+        const response = await fetch("/avatar", { 
+            method: "POST",
+            body: bodyContent,
+            headers: headersList
+        });
+        
+        const {avatar} = await response.json();
+        imagen.src = `/avatares/${avatar}`
+        localStorage.setItem('avatar', avatar)
+    }
+})
 
 async function guardarUsuario() {
     const url = "/user";
+    const imagen = localStorage.getItem('avatar')
+    console.log(imagen)
     const datoIngresado = {
+        avatar: imagen,
         name: document.getElementById('nameUsuario').value,
         lastname: document.getElementById('lastnameUsuario').value,
         age: document.getElementById('edadUsuario').value,
@@ -16,7 +45,8 @@ async function guardarUsuario() {
         city: document.getElementById('cityUsuario').value,
         country: document.getElementById('countryUsuario').value
     }
-
+    console.log(datoIngresado.avatar)
+   
     const objetoUsuario = datoIngresado;
                
         const fetchConfig = {

@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const getUserModel = () => {
 
     const usuarioSchema = new mongoose.Schema({
+        avatar: String,
         name: String,
         lastname: String,
         age: Number,
