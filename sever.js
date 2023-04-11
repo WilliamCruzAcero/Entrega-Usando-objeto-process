@@ -10,12 +10,19 @@ const jwt = require('jsonwebtoken')
 const path = require('path')
 const compression = require('compression');
 const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+
 const WebError = require('./models/webError')
 const { conectDB } = require('./conectDB/conectDB')
 const { getUserModel } = require('./models/modelUsuario')
 const { verificarCampoRequerido } = require('./verify/verifyCampo')
 const { verifyToken } = require('./verify/verifyToken');
+// const sendMailFromNodeMailer = require('./msgGmail/index_gmail');
 
+
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL
+const GMAIL_USER = process.env.GMAIL_USER;
+const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD;
 const secret = process.env.SECRET;
 
 class Server {
@@ -245,9 +252,48 @@ class Server {
                 country,
                 productos: []
             })
-    
+            
             await nuevoUsuario.save();
-    
+            
+            const transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: process.env.SMTP_PORT,
+                auth: {
+                    user: GMAIL_USER, 
+                    pass: GMAIL_PASSWORD,
+                },
+                tls: {
+                    rejectUnauthorized: false
+                }
+            });
+
+            
+            const mailOptions = {
+                from: "ecommerce",
+                to: ADMIN_EMAIL,
+                subject: "Nuevo usuario registrado",
+            
+                html: `usuario: 
+                    Nombre: ${name} ${lastname}, 
+                    Edad: ${age},
+                    Telefono: ${phone},
+                    Correo: ${email},
+                    Dirección: ${address},
+                    Ciudad: ${city},
+                    Pais: ${country}`
+            }
+
+            async function sendMailFromNodeMailer() {
+                try {
+                    const info = await transporter.sendMail(mailOptions);
+                    console.log(info);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+
+            sendMailFromNodeMailer()
+                      
             res.json({
                 message: `Usuario ${email} registrado con exito` 
             })
@@ -291,7 +337,8 @@ class Server {
             }
     
             const token = jwt.sign(tokenBody, secret, { expiresIn: '1h' });
-               
+            
+          
             res.json({ token });
     
         });
@@ -319,7 +366,7 @@ class Server {
         });
     
         this.app.post('/productos', verifyToken, async (req, res) => {
-            const { username } = req.secret;
+            const { username: email } = req.secret;
             const { nombre, precio, imagen, cantidad } = req.body;
     
             let err = 'Los siguientes campos son requeridos:'
@@ -331,7 +378,7 @@ class Server {
                 return res.status(error.status).json({error: error.message})
             }
     
-            const user = await UsuarioModel.findOne({ username });
+            const user = await UsuarioModel.findOne({ username: email });
             const productoExistente = user.productos.find(producto => producto.nombre === nombre);
     
             if (productoExistente) {
