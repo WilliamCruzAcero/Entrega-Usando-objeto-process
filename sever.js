@@ -12,7 +12,6 @@ const compression = require('compression');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 
-
 const WebError = require('./models/webError')
 const { conectDB } = require('./conectDB/conectDB')
 const { getUserModel } = require('./models/modelUsuario')
@@ -21,14 +20,10 @@ const { verifyToken } = require('./verify/verifyToken');
 const envioWhatsapp = require('./whatsapp/msgWhatsapp');
 
 
-
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL
 const GMAIL_USER = process.env.GMAIL_USER;
 const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD;
 const secret = process.env.SECRET;
-const TWILIO_ACOUNT_SID = process.env.TWILIO_ACOUNT_SID;
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
 
 class Server {
 
@@ -37,8 +32,6 @@ class Server {
         this.port = port;
         this.vistaInicio = '/'
         this.vistaRegistro = '/'
-        // this.login = '/'
-        
     }
 
     async start() {
@@ -259,9 +252,7 @@ class Server {
             })
             
             await nuevoUsuario.save();
-
             
-
             const transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: process.env.SMTP_PORT,
@@ -274,7 +265,6 @@ class Server {
                 }
             });
 
-            
             const mailOptions = {
                 from: "ecommerce",
                 to: ADMIN_EMAIL,
@@ -300,7 +290,8 @@ class Server {
             }
 
             sendMailFromNodeMailer()
-            envioWhatsapp();         
+            envioWhatsapp()
+
             res.json({
                 message: `Usuario ${email} registrado con exito` 
             })

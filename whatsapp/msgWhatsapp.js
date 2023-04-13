@@ -1,9 +1,9 @@
 require('dotenv').config()
 const twilio = require('twilio')
 
-const TWILIO_ACOUNT_SID='ACe03b737cbaa3c6a794af503c9417951b'
-const TWILIO_AUTH_TOKEN='1aa634ea5b8b8c9424b652dd6867b4f4'
-const TWILIO_PHONE_NUMBER='+14155238886'
+const TWILIO_ACOUNT_SID= process.env.TWILIO_ACOUNT_SID;
+const TWILIO_AUTH_TOKEN= process.env.TWILIO_AUTH_TOKEN;
+const TWILIO_PHONE_NUMBER= process.env.TWILIO_PHONE_NUMBER;
 
 const client = twilio 
 (
@@ -17,9 +17,9 @@ async function envioWhatsapp() {
     let result = await client.messages.create({
         from: 'whatsapp:+14155238886',
         to: 'whatsapp:+573107183388',
-        body: 'Hola mensaje'
+        body: `Nuevo usuario registrado:`
     })
 
 }
 
-module.exports = envioWhatsapp;
+module.exports = envioWhatsapp
