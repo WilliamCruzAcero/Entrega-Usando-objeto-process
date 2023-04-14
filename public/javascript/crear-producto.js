@@ -48,11 +48,11 @@ async function crearProducto() {
     }
 }
 
-document.getElementById("btn").addEventListener("click", irInfo )
+document.getElementById("btn").addEventListener("click", irIniSesion )
 
 
 
-  function irInfo() {
+  function irIniSesion() {
     window.location = "/info"
 
   }

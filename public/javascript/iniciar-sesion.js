@@ -3,7 +3,7 @@ loginButton.addEventListener("click", obtenerToken);
 
 async function obtenerToken() {
 
-    const url = "/login";
+    const url = "/sesion";
     const emailElement = document.getElementById('emailUsuario');
     const passwordElement = document.getElementById('passwordUsuario');
     const email = emailElement.value;

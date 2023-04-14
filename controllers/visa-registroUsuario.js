@@ -5,5 +5,6 @@ const vistaRegistro = (req , res = response) => {
 };
 
 module.exports = {
+ 
     vistaRegistro
 }

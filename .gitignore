@@ -1,3 +1,6 @@
 /node_modules
 /env/*
 !/env/.example.env
+/public/avatares/*
+!/public/avatares/default.png
+
