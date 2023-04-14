@@ -6,16 +6,13 @@ const express = require('express')
 
 
 const path = require('path')
-// const { loggerProd, loggerDev } = require('./logger');
 
-const crypto = require('crypto');
-const { conectDB } = require('./conectDB/conectDB')
 
-// const NODE_ENV = process.env.NODE_ENV || 'development'
-// const logger = NODE_ENV === 'production'
-//             ? loggerProd
-//             : loggerDev;
+const { conectDB } = require('./conectDB/conectDB');
+const { logger } = require('./wiston/loggerWinston');
 
+
+logger
 class Server {
 
     constructor (port) {
@@ -32,11 +29,11 @@ class Server {
     
     async start() {
         
+        logger.info('Conectando la base de datos')
         await conectDB();
-    
         
-        this.app.use(express.urlencoded({ extended: true}));
         this.app.use(express.json())
+        this.app.use(express.urlencoded({ extended: true}));
         
         this.app.use('/javascript', express.static(path.join(__dirname, 'public', 'javascript')))
         this.app.use('/avatares', express.static(path.join(__dirname, 'public', 'avatares')))
@@ -57,9 +54,6 @@ class Server {
         this.app.use(this.user, require('./routes/ruta-registro'))
         this.app.use(this.avatar, require('./routes/ruta-avatar'))
         this.app.use(this.productos, require('./routes/ruta-productos'))
-    }
-
-    listen() {
         this.app.listen(this.port, () => {
             console.log(`Servidor ejecutandose en el puerto ${this.port}`);
         })

@@ -3,7 +3,7 @@ const winston = require('winston');
 const loggerDev = winston.createLogger({
     level: "info",
     transports: [
-        new winston.transports.Console({level: "info"})
+        new winston.transports.Console({level: "info"}),
     ],
 });
 
@@ -17,7 +17,13 @@ const loggerProd = winston.createLogger({
     ]
 })
 
+
+const NODE_ENV = process.env.NODE_ENV || 'development'
+const logger = NODE_ENV === 'production'
+            ? loggerProd
+            : loggerDev;
+
 module.exports = {
-    loggerDev,
-    loggerProd
+    logger
+
 } 

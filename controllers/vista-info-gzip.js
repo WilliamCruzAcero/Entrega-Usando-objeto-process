@@ -1,15 +1,15 @@
-const { response } = require('express')
+const { request, response } = require('express')
 const {fork} = require('child_process');
 
 
 
-const compreGzip = ( res = response ) => {
+const vistaInfoGzip = ( res = response ) => {
 
     const serverInfo =
     {
         path: process.cwd(),
         plataforma: process.platform,
-        pid: process.pid,
+        pid: process.pid, 
         version: process.version,
         carpeta: process.title,
         memoria: process.memoryUsage.rss()
@@ -26,6 +26,6 @@ const compreGzip = ( res = response ) => {
     })
 }
 module.exports = {
-   compreGzip
+   vistaInfoGzip
 }
 

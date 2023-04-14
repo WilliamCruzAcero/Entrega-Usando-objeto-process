@@ -5,11 +5,11 @@ const Server = require('./sever');
 
 const main = async () => {
     
-    const port = process.argv[3] || 8080;
+    const port = process.argv[3] || process.env.PORT;
     const server = new Server(port);
 
     await server.start();
-    await server.listen();
+    // await server.listen();
 };
 
 const modoCluster = process.argv[2] === 'CLUSTER'

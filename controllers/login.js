@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const WebError = require('../models/webError');
 const { StatusCodes } = require('http-status-codes');
 const { User } = require('../models/modelUsuario');
+const { Logger, logger } = require('../wiston/loggerWinston');
 
 
 const secret = process.env.SECRET;
@@ -36,7 +37,9 @@ const login = async (req = request, res = response) => {
         }
 
     } catch (error) {
-        return res.status(error.status).json({
+        const status = error.status || StatusCodes.INTERNAL_SERVER_ERROR;
+        logger.log('error', error.message)
+        return res.status(status).json({
             error: error.message
         })           
     }

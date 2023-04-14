@@ -1,4 +1,4 @@
-// require('dotenv').config()
+// const {request, response} = require('express')
 // const nodemailer = require('nodemailer');
 
 
@@ -6,13 +6,20 @@
 // const GMAIL_USER = process.env.GMAIL_USER;
 // const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD;
 
-
-
+// const sendMailFromNodeMailer = async (req = request) => {
+//     const { name, lastname, age, phone, email, address, city, country } = req.body;
+//     try {
+//         const info = await transporter.sendMail(mailOptions);
+//         console.log(info);
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
 // const transporter = nodemailer.createTransport({
 //     host: 'smtp.gmail.com',
 //     port: process.env.SMTP_PORT,
 //     auth: {
-//         user: GMAIL_USER, 
+//         user: GMAIL_USER,
 //         pass: GMAIL_PASSWORD,
 //     },
 //     tls: {
@@ -27,20 +34,16 @@
 //     subject: "Nuevo usuario registrado",
 
 //     html: `usuario: 
-//         Nombre: ${name} ${lastname}, 
-//         Edad: ${age},
-//         Telefono: ${phone},
-//         Correo: ${email},
-//         Dirección: ${address},
-//         Ciudad: ${city},
-//         Pais: ${country}`
+//                 Nombre: ${name} ${lastname}, 
+//                 Edad: ${age},
+//                 Telefono: ${phone},
+//                 Correo: ${email},
+//                 Dirección: ${address},
+//                 Ciudad: ${city},
+//                 Pais: ${country}`
 // }
 
-// async function sendMailFromNodeMailer() {
-//     try {
-//         const info = await transporter.sendMail(mailOptions);
-//         // console.log(info);
-//     } catch (err) {
-//         console.log(err);
-//     }
+
+// module.exports = {
+//     sendMailFromNodeMailer
 // }
