@@ -18,9 +18,12 @@ const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD;
 
 const registroUsuario = async (req = request, res = response) => {
     
-    const { name, lastname, age, phone, email, password, address, city, country } = req.body;
+    const { type, name, lastname, age, phone, email, password, address, city, country } = req.body;
     
     try {
+        if (!type) {
+            throw new WebError('Seleccione un tipo de usuario', StatusCodes.BAD_REQUEST);
+        }
         if (!name) {
             throw new WebError('El nombre de usuario es requerido', StatusCodes.BAD_REQUEST);            
         }
@@ -78,6 +81,7 @@ const registroUsuario = async (req = request, res = response) => {
         const hashedPassword = await bcrypt.hash(password, saltRounds)
         const { avatar } = req.body
         const nuevoUsuario = new User({
+            type,
             avatar,
             name,
             lastname,
@@ -110,7 +114,8 @@ const registroUsuario = async (req = request, res = response) => {
             to: ADMIN_EMAIL,
             subject: "Nuevo usuario registrado",
     
-            html: `usuario: 
+            html: `usuario:
+                        Tipo de usuario: ${type} 
                         Nombre: ${name} ${lastname}, 
                         Edad: ${age},
                         Telefono: ${phone},
@@ -133,7 +138,7 @@ const registroUsuario = async (req = request, res = response) => {
         envioWhatsapp()
     
         res.json({
-            message: `Usuario ${email} registrado con exito`
+            message: `Usuario ${name} ${lastname} con ${email}, registrado con exito`
         })
     } catch (error) {
         const status = error.status || StatusCodes.INTERNAL_SERVER_ERROR;

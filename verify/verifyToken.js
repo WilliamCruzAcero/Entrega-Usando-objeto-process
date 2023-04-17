@@ -5,7 +5,6 @@ const secret = process.env.SECRET;
 
 function verifyToken(req, res, next) {
     const token = req.headers.authorization ?? req.query.token;
-    
 
     if (!token) {
         res.status(StatusCodes.UNAUTHORIZED).send('No se proporcionó un token de autenticación');
@@ -19,9 +18,26 @@ function verifyToken(req, res, next) {
     } catch (error) {
         res.status(StatusCodes.UNAUTHORIZED).send('Token de autenticación no válido');
     }
+}
 
+function verifyTokenWithRedirect(req, res, next) {
+    const token = req.headers.authorization ?? req.query.token;
+
+    if (!token) {
+        res.redirect('/sesion')
+        return;
+    }
+
+    try {
+        const decoded = jwt.verify(token, secret);
+        req.secret = decoded;
+        next();
+    } catch (error) {
+        res.redirect(StatusCodes.UNAUTHORIZED, '/sesion')
+    }
 }
 
 module.exports = {
-    verifyToken
+    verifyToken,
+    verifyTokenWithRedirect
 }

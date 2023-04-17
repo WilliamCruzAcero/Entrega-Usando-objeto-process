@@ -1,6 +1,10 @@
 const loginButton = document.getElementById('login');
 loginButton.addEventListener("click", obtenerToken);
 
+function load () {
+    setNavBarToken()
+  }
+
 async function obtenerToken() {
 
     const url = "/sesion";

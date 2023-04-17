@@ -1,0 +1,17 @@
+segun lo resultados obtenidos de atillery al lanzar el servidor con el usuario logeado, se puede observar:
+
+    COMANDO: npx artillery quick --count 500 -n 40 "http://localhost:8080/productos?token=..." > resultados_sin_cluster_500_40.txt
+
+     * sin CLUSTER:
+        - Para 20000 solicitudas empleo un tiempo total de 2 minutos y 17 segundos
+        - Sin errores
+        - Atendido 155 solicitudes por segundos
+        - El tiempo medio de respuesta fue de 3.197 segundos
+
+    COMANDO: npx artillery quick --count 500 -n 40 "http://localhost:8080/productos?token=..." > resultados_sin_cluster_500_40.txt
+
+     * con CLUSTER
+        - Para 20000 solicitudas empleo un tiempo total de 1 minutos y 55 segundos
+        - Sin errores
+        - Atendido 183 solicitudes por segundos
+        - El tiempo medio de respuesta fue de 2.276 segundos

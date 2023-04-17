@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const usuarioSchema = new mongoose.Schema({
+    type: String,
     avatar: String,
     name: String,
     lastname: String,
@@ -15,7 +16,8 @@ const usuarioSchema = new mongoose.Schema({
         nombre: String,
         precio: Number,
         imagen: String,
-        cantidad: Number
+        cantidad: Number,
+        id: Number
     }]
 });
 
