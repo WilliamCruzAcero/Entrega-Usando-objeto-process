@@ -5,8 +5,8 @@ const fileUpload = require('express-fileupload');
 const express = require('express')
 const path = require('path')
 
-const { conectDB } = require('./conectDB/conectDB');
-const { logger } = require('./wiston/loggerWinston');
+const { conectDB } = require('./src/conectDB/conectDB');
+const { logger } = require('./src/models/loggerWinston');
 
 class Server {
 
@@ -42,13 +42,13 @@ class Server {
         this.app.set('views', './views');
         this.app.set('view engine', 'ejs');
 
-        this.app.use(this.home, require('./routes/ruta-home'))
-        this.app.use(this.login, require('./routes/ruta-login'))
-        this.app.use(this.info, require('./routes/ruta-info'))
-        this.app.use(this.user, require('./routes/ruta-registro'))
-        this.app.use(this.avatar, require('./routes/ruta-avatar'))
-        this.app.use(this.productos, require('./routes/ruta-productos'))
-        this.app.use(this.carrito, require('./routes/ruta-carrito'))
+        this.app.use(this.home, require('./src/routes/ruta-home'))
+        this.app.use(this.login, require('./src/routes/ruta-login'))
+        this.app.use(this.info, require('./src/routes/ruta-info'))
+        this.app.use(this.user, require('./src/routes/ruta-registro'))
+        this.app.use(this.avatar, require('./src/routes/ruta-avatar'))
+        this.app.use(this.productos, require('./src/routes/ruta-productos'))
+        this.app.use(this.carrito, require('./src/routes/ruta-carrito'))
         this.app.listen(this.port, () => {
             console.log(`Servidor ejecutandose en el puerto ${this.port}`);
         })

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const WebError = require('../models/webError');
 const { StatusCodes } = require('http-status-codes');
 const { User } = require('../models/modelUsuario');
-const { Logger, logger } = require('../wiston/loggerWinston');
+const { logger } = require('../models/loggerWinston');
 
 
 const secret = process.env.SECRET;

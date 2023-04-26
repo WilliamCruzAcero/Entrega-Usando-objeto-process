@@ -1,9 +1,8 @@
-const { request, response} = require('express')
-const { User } = require("../models/modelUsuario");
+const { request, response} = require('express');
+const { User } = require('../models/modelUsuario');
 
 const productos = async (req = request, res = response) => {
-    
- 
+
     const { email, name } = req.secret
     const user = await User.findOne({ email });
 

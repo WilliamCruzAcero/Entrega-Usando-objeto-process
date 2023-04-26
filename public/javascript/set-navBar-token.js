@@ -1,5 +1,7 @@
 const authNavLinks = document.querySelectorAll('.auth-nav-link')
-
+function load () {
+    setNavBarToken()
+}
 const setHrefs = (liskList, token) => {
     for (let i = 0; i < liskList.length; i++) {
         const link = liskList[i];

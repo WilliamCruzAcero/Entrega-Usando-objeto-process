@@ -51,14 +51,3 @@ async function crearProducto() {
             break;
     }
 }
-
-document.getElementById("btn").addEventListener("click", irIniSesion)
-
-
-
-function irIniSesion() {
-    window.location = "/info"
-
-}
-
-

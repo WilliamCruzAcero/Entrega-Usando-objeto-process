@@ -17,7 +17,7 @@ const usuarioSchema = new mongoose.Schema({
         precio: Number,
         imagen: String,
         cantidad: Number,
-        id: Number
+        
     }]
 });
 

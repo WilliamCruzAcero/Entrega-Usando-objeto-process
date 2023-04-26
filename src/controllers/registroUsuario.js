@@ -4,17 +4,14 @@ const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer');
 const { StatusCodes } = require('http-status-codes');
 const { User } = require('../models/modelUsuario');
-const envioWhatsapp = require('../whatsapp/msgWhatsapp');
-const { logger } = require('../wiston/loggerWinston');
+const envioWhatsapp = require('../services/whatsapp/msgWhatsapp');
+const { logger } = require('../models/loggerWinston');
 const WebError = require('../models/webError');
-// const { sendMailFromNodeMailer } = require('../msgGmail/index_gmail');
+// const { sendMailFromNodeMailer } = require('../services/msgGmail/index_gmail');
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL
 const GMAIL_USER = process.env.GMAIL_USER;
 const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD;
-
-
-
 
 const registroUsuario = async (req = request, res = response) => {
     
@@ -94,7 +91,8 @@ const registroUsuario = async (req = request, res = response) => {
             country,
             productos: []
         })
-    
+        
+       
         await nuevoUsuario.save();
     
         const transporter = nodemailer.createTransport({
@@ -115,7 +113,7 @@ const registroUsuario = async (req = request, res = response) => {
             subject: "Nuevo usuario registrado",
     
             html: `usuario:
-                        Tipo de usuario: ${type} 
+                        Tipo de usuario: ${type}, 
                         Nombre: ${name} ${lastname}, 
                         Edad: ${age},
                         Telefono: ${phone},

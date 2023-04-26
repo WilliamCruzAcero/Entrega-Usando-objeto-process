@@ -1,7 +1,7 @@
 const {Router} = require('express');
-const { productos } = require('../controllers/productos');
 const { verifyToken, verifyTokenWithRedirect } = require('../verify/verifyToken');
 const { crearProd } = require('../controllers/crear-producto');
+const { productos } = require('../controllers/productos');
 
 const routes = Router();
 
