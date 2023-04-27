@@ -1,0 +1,21 @@
+<%- include('./header')-%>
+    <body style="background-color: lightgrey;" onload="load()">
+        <%- include('./navbar')-%>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-8 d-flex flex-column align-items-start">
+                    <h1>Bienvenido <%=usuario.nombre%> </h1>
+                    <p style="font-size: 1.3em; font-style: italic;">
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <%-include('./card')-%>
+        </div>
+             
+        <script src="./javascript/set-navBar-token.js"></script>
+        <script src="./javascript/tienda.js"></script>
+    </body>
+<%- include('./pie')-%>

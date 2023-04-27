@@ -19,6 +19,7 @@ class Server {
         this.user = '/user'
         this.avatar = '/avatar'
         this.productos = '/productos'
+        this.tienda = '/tienda'
         this.carrito = '/carrito'
     }
 
@@ -48,6 +49,7 @@ class Server {
         this.app.use(this.user, require('./src/routes/ruta-registro'))
         this.app.use(this.avatar, require('./src/routes/ruta-avatar'))
         this.app.use(this.productos, require('./src/routes/ruta-productos'))
+        this.app.use(this.tienda, require('./src/routes/ruta-tienda'))
         this.app.use(this.carrito, require('./src/routes/ruta-carrito'))
         this.app.listen(this.port, () => {
             console.log(`Servidor ejecutandose en el puerto ${this.port}`);

@@ -5,27 +5,16 @@
                 <th scope="col">Nombre</th>
                 <th>Precio</th>
                 <th>Imagen</th>
-                <th>Acción</th>
                 <th>cantidad</th> 
-                <th>Total</th> 
+                 
             </tr> 
             <%productos.forEach(function(producto) { %>
                 <tr>
                     <td><%=producto.nombre%></td>
                     <td><%=producto.precio%></td>
                     <td><img src="<%=producto.imagen%>" alt="<%=producto.nombre%>" width="200"></img></td>
-                    <td>
-                        <button class="btn btn-info btn-sm">
-                            +
-                        </button>
-                        <button class="btn btn-danger btn-sm">
-                            -
-                        </button>
-                    </td>
                     <td><%=producto.cantidad%></td>
-                    <td class="total"></td>
                 </tr>
-                <!-- <script src="./javascript/total.js"></script> -->
                 <%});%>    
         </table>  
     </div>
