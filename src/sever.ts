@@ -5,17 +5,17 @@ import fileUpload from 'express-fileupload';
 import express from 'express';
 import path from 'path';
 
-import conectDB from './src/conectDB/conectDB';
-import  { logger } from './src/models/loggerWinston';
+import conectDB from './conectDB/conectDB';
+import  { logger } from './models/loggerWinston';
 
-import homeRouter from './src/routes/ruta-home';
-import loginRouter from './src/routes/ruta-login';
-import infoRouter from './src/routes/ruta-info';
-import registroRouter from './src/routes/ruta-registro';
-import avatarRouter from './src/routes/ruta-avatar';
-import productosRouter from './src/routes/ruta-productos';
-import tiendaRouter from './src/routes/ruta-tienda';
-import carritoRouter from './src/routes/ruta-carrito';
+import homeRouter from './routes/ruta-home';
+import loginRouter from './routes/ruta-login';
+import infoRouter from './routes/ruta-info';
+import registroRouter from './routes/ruta-registro';
+import avatarRouter from './routes/ruta-avatar';
+import productosRouter from './routes/ruta-productos';
+import tiendaRouter from './routes/ruta-tienda';
+import carritoRouter from './routes/ruta-carrito';
 
 export class Server {
 

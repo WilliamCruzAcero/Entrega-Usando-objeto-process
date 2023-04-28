@@ -1,6 +1,6 @@
 import os from 'os';
 
-function nucleoProce() {
+ function nucleoProce() {
   const numCpus = os.cpus().length;
   return numCpus;
 }

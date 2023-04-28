@@ -1,9 +1,9 @@
 import dontenv from'dotenv'
-dontenv.config({ path: './env/.env' })
+dontenv.config({ path: '../env/.env' })
 import cluster from 'cluster';
 import { cpus } from 'os';
 import {Server} from './sever';
-import { PORT} from './config';
+import { PORT} from '../config/index';
 
 const main = async () => {
     
