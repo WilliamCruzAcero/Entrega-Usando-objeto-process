@@ -12,7 +12,7 @@ export class usuarioDTO {
     address?: string;
     city?: string;
     country?: string;
-    productos: [{
+    productos?: [{
         nombre?: string;
         precio?: number;
         imagen?: string;

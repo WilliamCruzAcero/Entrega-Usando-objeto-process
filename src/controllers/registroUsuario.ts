@@ -2,10 +2,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import nodemailer from 'nodemailer';
+// import nodemailer from 'nodemailer';
 import { StatusCodes } from 'http-status-codes';
 import { usuarioModel } from '../models/modelUsuario';
-import envioWhatsapp from '../services/whatsapp/msgWhatsapp';
+// import envioWhatsapp from '../services/whatsapp/msgWhatsapp';
 const { logger } = require('../models/loggerWinston');
 const WebError = require('../models/webError');
 
@@ -97,50 +97,50 @@ export const registroUsuario = async (req: Request, res: Response) => {
        
         await nuevoUsuario.save();
     
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: process.env.SMTP_PORT,
-            auth: {
-                user: GMAIL_USER,
-                pass: GMAIL_PASSWORD,
-            },
-            tls: {
-                rejectUnauthorized: false
-            }
-        });
+        // const transporter = nodemailer.createTransport({
+        //     host: 'smtp.gmail.com',
+        //     port: process.env.SMTP_PORT,
+        //     auth: {
+        //         user: GMAIL_USER,
+        //         pass: GMAIL_PASSWORD,
+        //     },
+        //     tls: {
+        //         rejectUnauthorized: false
+        //     }
+        // });
     
-        const mailOptions = {
-            from: "ecommerce",
-            to: ADMIN_EMAIL,
-            subject: "Nuevo usuario registrado",
+        // const mailOptions = {
+        //     from: "ecommerce",
+        //     to: ADMIN_EMAIL,
+        //     subject: "Nuevo usuario registrado",
     
-            html: `usuario:
-                        Tipo de usuario: ${type}, 
-                        Nombre: ${name} ${lastname}, 
-                        Edad: ${age},
-                        Telefono: ${phone},
-                        Correo: ${email},
-                        Dirección: ${address},
-                        Ciudad: ${city},
-                        Pais: ${country}`
-        }
+        //     html: `usuario:
+        //                 Tipo de usuario: ${type}, 
+        //                 Nombre: ${name} ${lastname}, 
+        //                 Edad: ${age},
+        //                 Telefono: ${phone},
+        //                 Correo: ${email},
+        //                 Dirección: ${address},
+        //                 Ciudad: ${city},
+        //                 Pais: ${country}`
+        // }
     
-        async function sendMailFromNodeMailer() {
-            try {
-                const info = await transporter.sendMail(mailOptions);
-                // console.log(info);
-            } catch (err) {
-                console.log(err);
-            }
-        }
+        // async function sendMailFromNodeMailer() {
+        //     try {
+        //         const info = await transporter.sendMail(mailOptions);
+        //         // console.log(info);
+        //     } catch (err) {
+        //         console.log(err);
+        //     }
+        // }
     
-        sendMailFromNodeMailer()
-        envioWhatsapp()
+        // sendMailFromNodeMailer()
+        // envioWhatsapp()
     
         res.json({
             message: `Usuario ${name} ${lastname} con ${email}, registrado con exito`
         })
-    } catch (error) {
+    } catch (error: any) {
         const status = error.status || StatusCodes.INTERNAL_SERVER_ERROR;
         logger.log('error', error.message)
         return res.status(status).json({

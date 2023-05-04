@@ -5,7 +5,7 @@ import os from 'os';
   return numCpus;
 }
 
-process.on('message', msg => {
-  const numNucleos =nucleoProce();
-  process.send(numNucleos)
-})
+// process.on('message', msg => {
+//   const numNucleos =nucleoProce();
+//   process.send(numNucleos)
+// })

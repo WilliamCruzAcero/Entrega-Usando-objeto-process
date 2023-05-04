@@ -1,8 +1,9 @@
-require('dotenv').config();
-const {fork} = require('child_process');
+import dotenv from 'dotenv';
+dotenv.config();
+import {fork} from'child_process';
 
 
-function info() {
+export function info() {
 
     const serverInfo = {
         path: process.cwd(),
@@ -20,11 +21,11 @@ function info() {
         let numNucleos = msg;
         
         
-        return serverInfo, 
+        return serverInfo ;
                numNucleos
 
     })
 }
 
-module.exports = info
+
 

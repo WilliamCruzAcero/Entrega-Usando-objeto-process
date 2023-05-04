@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import { Token } from '../models/token';
 import { usuarioModel } from '../models/modelUsuario';
 import { verificarCampoRequerido } from '../verify/verifyCampo';
+import { StatusCodes } from 'http-status-codes';
+
 
 
 export const crearProd = async (req: Request & {token: Token}, res: Response) => {
@@ -13,7 +15,7 @@ export const crearProd = async (req: Request & {token: Token}, res: Response) =>
 
     try {
         verificarCampoRequerido(nombre, `${err} Nombre`);
-    } catch (error) {
+    } catch (error: any) {
         return res.status(error.status).json({ error: error.message })
     }
 

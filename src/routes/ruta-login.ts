@@ -1,13 +1,14 @@
 import { Router } from 'express';
 
 import { vistaInicio } from '../controllers/vista-inicioSesion';
-import { logout } from '../controllers/logout';
 import { login } from '../controllers/login';
+import { logout } from '../controllers/logout';
+
 
 const routes = Router();
 
-routes.get('/', vistaInicio)
-routes.post('/', login )
+routes.get('/', vistaInicio),
+routes.post('/', login ),
 routes.post('/logout', logout )
 
 
