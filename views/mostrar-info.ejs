@@ -1,15 +1,11 @@
 <%- include('./header')-%>
-
-    <body>
-        
+    <body onload="load()">
+        <%- include('./navbar')-%>
         <div class="container mt-3">
-
             <h2>info</h2>
             <%- include('./info')-%>
-            <button class="btn  btn-outline-secondary mt-3 mb-5" id="btnAtras">Productos</button>
-
         </div>
-       
+        <script src="./javascript/set-navBar-token.js"></script>
+        <script src="./javascript/info.js"></script>
     </body>
-
-    <%- include('./pie')-%> 
+<%- include('./pie')-%> 

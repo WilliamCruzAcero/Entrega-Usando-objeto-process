@@ -1,6 +1,7 @@
 <%- include('./header')-%>
 
-    <body style="background: rgb(152, 152, 253);">
+    <body onload="load()" >
+        <%- include('./navbar')-%>
         <div class="container mt-3">
             <div class="jumbotron">
                 
@@ -17,11 +18,12 @@
                     <input type="password" class="form-control" id="passwordUsuario" name="passwordUsuario" required>
                 </div>
 
-                <button class="btn btn-primary mt-3 mb-5" id="login">Enviar</button>
+                <button class="btn btn-primary mt-3 mb-5" id="login">Iniciar sesión</button>
 
                 <button class="btn  btn-outline-secondary mt-3 mb-5" id="btn">Registrar</button>
             </div>
         </div>
+        <script src="./javascript/set-navBar-token.js"></script>
         <script src="./javascript/iniciar-sesion.js"></script>
 
     </body>

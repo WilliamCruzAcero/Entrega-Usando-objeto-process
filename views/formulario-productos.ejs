@@ -1,26 +1,18 @@
 <%- include('./header')-%>
 
-    <body>
+    <body onload="load()">
+        <%- include('./navbar')-%>
         <div class="container mt-3">
 
             <div class="container text-center">
                 <div class="row">
                     <div class="col-8 d-flex flex-column align-items-start">
                         <h1>Bienvenido <%=usuario.nombre%></h1>
+                        <h2><%=usuario.apellido%></h2>
                         <p style="font-size: 1.3em; font-style: italic;">
-                            <%=usuario.username%>
+                            <%=usuario.email%>
                         </p>
                     </div>
-
-                    <div class="col">
-                        <button class="btn  btn-outline-secondary mt-3 mb-5" id="btn">Info</button>
-                    </div>
-                    
-                    <div class="col">
-                        <button class="btn btn-danger mt-3 mb-5" id="logout">Cerrar sesión</button>
-                    </div>
-                    
-
                 </div>
             </div>
 
@@ -51,11 +43,13 @@
                 <button class="btn btn-success mt-3 mb-5" id="crear">Agregar Producto</button>
 
                 <h2 style="color:blue;">Historial de productos</h2>
-                <%- include('./tabla')-%>
+                <%-include('./tabla')-%>
 
             </div>
         </div>
-        <script src="./javascript/crear-producto.js"></script> 
+        <script src="./javascript/set-navBar-token.js"></script>
+        <script src="./javascript/crear-producto.js"></script>
+        <!-- <script src="./javascript/card.js"></script>  -->
     </body>
 
-    <%- include('./pie')-%>
+<%- include('./pie')-%>

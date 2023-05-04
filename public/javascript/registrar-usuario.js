@@ -1,3 +1,6 @@
+function load () {
+    setNavBarToken()
+}
 
 const registrarUsuario = document.getElementById('registrarUsuario');
 registrarUsuario.addEventListener("click", guardarUsuario)
@@ -5,6 +8,8 @@ registrarUsuario.addEventListener("click", guardarUsuario)
 const cambioAvatar = document.getElementById('avatarUsuario');
 const imagen = document.getElementById('imagen');
 
+// const tipoUsuario = document.getElementById('typeUsuario');
+// console.log(tipoUsuario)
 
 cambioAvatar.addEventListener('change', async function(e) {
     const file = e.target.files[0]; 
@@ -32,8 +37,8 @@ cambioAvatar.addEventListener('change', async function(e) {
 async function guardarUsuario() {
     const url = "/user";
     const imagen = localStorage.getItem('avatar')
-    console.log(imagen)
     const datoIngresado = {
+        type: document.getElementById('typeUsuario').value, 
         avatar: imagen,
         name: document.getElementById('nameUsuario').value,
         lastname: document.getElementById('lastnameUsuario').value,

@@ -1,9 +1,13 @@
 const loginButton = document.getElementById('login');
 loginButton.addEventListener("click", obtenerToken);
 
+function load () {
+    setNavBarToken()
+  }
+
 async function obtenerToken() {
 
-    const url = "/login";
+    const url = "/sesion";
     const emailElement = document.getElementById('emailUsuario');
     const passwordElement = document.getElementById('passwordUsuario');
     const email = emailElement.value;

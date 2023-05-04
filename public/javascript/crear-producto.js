@@ -1,28 +1,32 @@
 const createButton = document.getElementById('crear');
 createButton.addEventListener("click", crearProducto);
 
+function load() {
+    setNavBarToken()
+}
+
 async function crearProducto() {
 
-    const url = "/productos";       
+    const url = "/productos";
     const nombreElement = document.getElementById('nombre');
-    const nombre = nombreElement.value;    
-    
+    const nombre = nombreElement.value;
+
     const precioElement = document.getElementById('precio');
-    const precio = precioElement.value; 
+    const precio = precioElement.value;
 
     const imagenElement = document.getElementById('imagen');
-    const imagen = imagenElement.value;    
-    
+    const imagen = imagenElement.value;
+
     const cantidadElement = document.getElementById('cantidad');
-    const cantidad = cantidadElement.value;    
-    
+    const cantidad = cantidadElement.value;
+
     const token = localStorage.getItem('token')
     const data = { nombre, precio, imagen, cantidad }
-    
+
     const fetchConfig = {
         method: 'POST',
         body: JSON.stringify(data),
-        headers:{
+        headers: {
             'Content-Type': 'application/json',
             'Authorization': token
         }
@@ -47,37 +51,3 @@ async function crearProducto() {
             break;
     }
 }
-
-document.getElementById("btn").addEventListener("click", irInfo )
-
-
-
-  function irInfo() {
-    window.location = "/info"
-
-  }
-
-const logoutButton = document.getElementById('logout');
-logoutButton.addEventListener("click", cerrarSesion);
-
-function parseJwt (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    return JSON.parse(jsonPayload);
-
-}
-
-function cerrarSesion() {
-    const token = localStorage.getItem('token')
-    const {name} = parseJwt(token)
-    
-    alert(`Hasta luego ${name}`)
-    localStorage.removeItem("token")
-    window.location = '/'
-    
-}
-
