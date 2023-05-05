@@ -1,21 +1,22 @@
-const axios = require('axios');
+// const axios = require('axios');
 
-const instance = axios.create({
-    baseURL: 'http://proyecto-coderhouse-williamcruz.onrender.com:8080',
-    timeout: 1000
-  });
+// const instance = axios.create({
+//     baseURL: 'http://proyecto-coderhouse-williamcruz.onrender.com',
+//     timeout: 1000
+//     // headers: {'X-Custom-Header': 'foobar'}
+//   });
 
-const login = async() => {
-    try {
-        const {token}  = await instance.post('/login', {
-            email: "williamcruzacero@hotmail.com",
-            password: "1234"
-        });
-        console.log(token)
+// const login = async() => {
+//     try {
+//         const {token}  = await instance.post('/sesion', {
+//             email: "williamcruzacero@hotmail.com",
+//             password: "1234"
+//         });
+//         console.log(token)
 
-    } catch (error) {
-        console.error(error)
-    }
-}
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
 
-login();
+// login();

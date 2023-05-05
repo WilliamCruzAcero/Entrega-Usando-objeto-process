@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+
+    <!-- Conectar a Bootstrap via CDN  -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> 
+    <link rel="stylesheet", type="text/css", href="../public/css/index.css">
+</head>
+
+<body onload="load()">
+    <nav  class="sticky-top navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <div class="container-fluid">
+          <a class="navbar-brand">Ecommerce</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/sesion">Iniciar sesión</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/user">Registrar usuario</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link auth-nav-link" aria-current="page" href="/info">Info</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link auth-nav-link" aria-current="page" href="/productos">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link auth-nav-link" aria-current="page" href="/tienda">Tienda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link auth-nav-link" aria-current="page" href="/carrito">Carrito</a>
+              </li>
+              
+              <button class="btn btn-success" id="logout">Logout</button>
+              
+          </div>
+        </div>
+        
+      </nav>
+      <div class="container mt-3">
+
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-8 d-flex flex-column align-items-start">
+                    <h1>Bienvenido "nombre de usuario"</h1>
+                    
+                    <p style="font-size: 1.3em; font-style: italic;">
+                       "email del usuario"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="jumbotron">
+            <h1 style="color:black mt-3;"></h1>
+            <br />
+
+            <div class="form-group">
+                <label for="nombre"><b>Nombre</b></label>
+                <input type="text" id="nombre" class="form-control" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="precio"><b>Precio</b></label>
+                <input type="number" id="precio" class="form-control" name="precio">
+            </div>
+
+            <div class="form-group">
+                <label for="imagen"><b>Imagen</b></label>
+                <input type="url" id="imagen" class="form-control" name="imagen">
+            </div>
+
+            <div class="form-group">
+                <label for="cantidad"><b>Cantidad</b></label>
+                <input type="number" id="cantidad" class="form-control" name="cantidad">
+            </div>
+
+            <button class="btn btn-success mt-3 mb-5" id="crear">Agregar Producto</button>
+
+            <h2 style="color:blue;">Historial de productos</h2>
+        </div>
+    </div>
+    <div class="table-resposive">
+      <table class="table table-dark">
+           <tr style="color: tomato;">
+               <th scope="col">Nombre</th>
+               <th>Precio</th>
+               <th>Imagen</th>
+               <th>cantidad</th> 
+                
+           </tr> 
+          
+               <tr>
+                   <td>"nombre del producto"</td>
+                   <td>precio del producto</td>
+                   <td><img src="" alt="" width="200">imagen del producto</img></td>
+                   <td>cantidad</td>
+               </tr>
+        </table>  
+   </div>
+
+    <script src="./javascript/set-navBar-token.js"></script>
+    <script src="./javascript/crear-producto.js"></script>
+    
+
+</body>
