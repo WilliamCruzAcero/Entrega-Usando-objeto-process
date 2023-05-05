@@ -13,7 +13,7 @@ async function obtenerToken() {
     const email = emailElement.value;
     const password = passwordElement.value;
     const data = { email, password }
-
+ 
     const fetchConfig = {
         method: 'POST',
         body: JSON.stringify(data),

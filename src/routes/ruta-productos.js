@@ -1,11 +1,11 @@
 const {Router} = require('express');
-const { verifyToken, verifyTokenWithRedirect } = require('../verify/verifyToken');
+const { verifyToken } = require('../verify/verifyToken');
 const { crearProd } = require('../controllers/crear-producto');
-const { productos } = require('../controllers/vista-productos');
+const { obtenerProductos } = require('../controllers/obtener-productos');
 
 const routes = Router();
 
-routes.get('/', verifyTokenWithRedirect, productos)
+routes.get('/', verifyToken, obtenerProductos)
 routes.post('/', verifyToken, crearProd)
 
 module.exports = routes;

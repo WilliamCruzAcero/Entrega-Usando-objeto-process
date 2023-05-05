@@ -18,7 +18,7 @@ class Server {
         this.info = '/info'
         this.user = '/user'
         this.avatar = '/avatar'
-        this.productos = '/productos'
+        this.productos = '/api/productos'
         this.tienda = '/tienda'
         this.carrito = '/carrito'
     }
@@ -33,6 +33,7 @@ class Server {
 
         this.app.use('/javascript', express.static(path.join(__dirname, 'public', 'javascript')))
         this.app.use('/avatares', express.static(path.join(__dirname, 'public', 'avatares')))
+        this.app.use('/productos', express.static(path.join(__dirname, 'public', 'productos')))
 
         this.app.use(fileUpload({
             useTempFiles: true,

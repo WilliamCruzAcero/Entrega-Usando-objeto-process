@@ -9,7 +9,7 @@
     <!-- Conectar a Bootstrap via CDN  -->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> 
-    <link rel="stylesheet", type="text/css", href="../public/css/index.css">
+    <!-- <link rel="stylesheet", type="text/css", href="../public/css/index.css"> -->
 </head>
 
 <body onload="load()">
@@ -90,7 +90,7 @@
         </div>
     </div>
     <div class="table-resposive">
-      <table class="table table-dark">
+      <table class="table table-dark" id="tabla">
            <tr style="color: tomato;">
                <th scope="col">Nombre</th>
                <th>Precio</th>
@@ -99,17 +99,12 @@
                 
            </tr> 
           
-               <tr>
-                   <td>"nombre del producto"</td>
-                   <td>precio del producto</td>
-                   <td><img src="" alt="" width="200">imagen del producto</img></td>
-                   <td>cantidad</td>
-               </tr>
+               
         </table>  
    </div>
 
-    <script src="./javascript/set-navBar-token.js"></script>
-    <script src="./javascript/crear-producto.js"></script>
+    <script src="../javascript/set-navBar-token.js"></script>
+    <script src="../javascript/crear-producto.js"></script>
     
 
 </body>

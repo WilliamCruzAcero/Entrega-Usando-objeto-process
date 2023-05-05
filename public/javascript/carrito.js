@@ -49,7 +49,7 @@ const baseDeDatos = dataBase
 
   /**
   * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
-  */
+  */ 
   function renderizarProductos() {
       baseDeDatos.forEach((info) => {
           // Estructura
