@@ -1,5 +1,5 @@
 const { request, response } = require('express');
-const { User } = require('../models/modelUsuario');
+const { User } = require('../models/mongo.usuario');
 
 const tienda = async (req, res = response) => {
 

@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const { verifyToken } = require('../verify/verifyToken');
+const { verifyToken } = require('../../src/services/verificarToken');
 const { crearProd } = require('../controllers/crear-producto');
 const { obtenerProductos } = require('../controllers/obtener-productos');
 

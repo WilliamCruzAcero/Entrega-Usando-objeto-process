@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const { tienda } = require('../controllers/vista-tienda');
-const { verifyTokenWithRedirect } = require('../verify/verifyToken');
+const { verifyTokenWithRedirect } = require('../../src/services/verificarToken');
 
 const routes = Router();
 

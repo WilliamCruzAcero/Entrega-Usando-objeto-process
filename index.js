@@ -2,13 +2,16 @@ require('dotenv').config({ path: './env/.env' })
 const cluster = require('cluster');
 const { cpus } = require('os');
 const Server = require('./sever');
+// const ServerGraphql = require('./serverGraph');
 
 const main = async () => {
     
     const port = process.argv[3] || process.env.PORT;
     const server = new Server(port);
-
+    // const serverGraphql = new ServerGraphql(port);
+    
     await server.start();
+    // await serverGraphql.start();
     // await server.listen();
 };
 

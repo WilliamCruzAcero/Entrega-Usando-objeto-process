@@ -1,23 +1,18 @@
-const { request, response } = require('express');
-const { User } = require('../models/mongo.usuario');
-const { verificarCampoRequerido } = require('../services/verificarCampoRequerido');
+const { User } = require("../models/mongo.usuario");
+const { verificarCampoRequerido } = require("./verificarCampoRequerido");
 
-const crearProd = async (req = request, res = response) => {
-    const { email } = req.secret;
-    const { nombre, precio, imagen, cantidad } = req.body;
 
-    let err = 'Los siguientes campos son requeridos:'
+const guardarProducto = async ( email, {nombre, precio, imagen, cantidad} ) => {
+
+    let mensajeBase = 'Los siguientes campos son requeridos:'
     const camposFaltantes = []
 
-    try {
-        verificarCampoRequerido(nombre, `${err} Nombre`);
-    } catch (error) {
-        return res.status(error.status).json({ error: error.message })
-    }
+    verificarCampoRequerido(nombre, `${mensajeBase} Nombre`);
 
     const user = await User.findOne({ email });
+    
     const productoExistente = user.productos.find(producto => producto.nombre === nombre);
-
+    
     if (productoExistente) {
 
         const posicionDelProducto = user.productos.indexOf(productoExistente);
@@ -49,8 +44,8 @@ const crearProd = async (req = request, res = response) => {
         }
 
         if (camposFaltantes.length) {
-            err = err + ' ' + camposFaltantes.join(', ');
-            return res.status(StatusCodes.BAD_REQUEST).json({ error: err })
+            const mensaje = mensajeBase + ' ' + camposFaltantes.join(', ');
+            throw new Error(mensaje); 
         }
 
         user.productos.push({
@@ -62,10 +57,8 @@ const crearProd = async (req = request, res = response) => {
     }
 
     await user.save()
-
-    res.json({});
-
 }
+
 module.exports = {
-    crearProd
+    guardarProducto
 }

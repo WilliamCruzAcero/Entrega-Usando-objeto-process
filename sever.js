@@ -1,12 +1,17 @@
 // importar dependencias
+const fs = require('fs');
+const path = require('path')
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
+const {graphqlHTTP} = require('express-graphql')
+
 
 const express = require('express')
-const path = require('path')
 
 const { conectDB } = require('./src/conectDB/conectDB');
 const { logger } = require('./src/models/loggerWinston');
+const { buildSchema } = require('graphql');
+const {getUsers, saveProduct, login} = require('./src/graphql/resolvers')
 
 class Server {
 
@@ -21,6 +26,7 @@ class Server {
         this.productos = '/api/productos'
         this.tienda = '/tienda'
         this.carrito = '/carrito'
+        this.graphql = '/graphql'
     }
 
     async start() {
@@ -30,6 +36,8 @@ class Server {
 
         this.app.use(express.json())
         this.app.use(express.urlencoded({ extended: true }));
+
+               
 
         this.app.use('/javascript', express.static(path.join(__dirname, 'public', 'javascript')))
         this.app.use('/avatares', express.static(path.join(__dirname, 'public', 'avatares')))
@@ -52,6 +60,22 @@ class Server {
         this.app.use(this.productos, require('./src/routes/ruta-productos'))
         this.app.use(this.tienda, require('./src/routes/ruta-tienda'))
         this.app.use(this.carrito, require('./src/routes/ruta-carrito'))
+        
+        // graphQL 
+        const schemaFile = fs.readFileSync('./src/graphql/schema/schema.graphql', {encoding: 'utf-8'});
+        const schema = buildSchema(schemaFile); 
+        const root = {
+            getUsers,
+            saveProduct,
+            login
+          }
+
+        this.app.use(this.graphql, graphqlHTTP({
+            schema,
+            rootValue: root,
+            graphiql: true
+        }));
+
         this.app.listen(this.port, () => {
             console.log(`Servidor ejecutandose en el puerto ${this.port}`);
         })

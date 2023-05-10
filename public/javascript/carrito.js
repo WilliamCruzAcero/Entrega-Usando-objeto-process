@@ -1,5 +1,5 @@
 const {request} = require('express');
-const { User } = require('../../models/modelUsuario');
+const { User } = require('../../models/mongo.usuario');
 req = request
 document.addEventListener('DOMContentLoaded', () => {
   // Variables
@@ -201,7 +201,7 @@ const baseDeDatos = dataBase
 
 
 
-// const { User } = require("../../models/modelUsuario")
+// const { User } = require("../../models/mongo.usuario")
 
 // function load () {
 //     setNavBarToken()

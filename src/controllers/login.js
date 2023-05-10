@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const WebError = require('../models/webError');
 const { StatusCodes } = require('http-status-codes');
-const { User } = require('../models/modelUsuario');
+const { User } = require('../models/mongo.usuario');
 const { logger } = require('../models/loggerWinston');
 
 

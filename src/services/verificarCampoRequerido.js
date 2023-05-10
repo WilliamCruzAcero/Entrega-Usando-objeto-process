@@ -1,4 +1,5 @@
 const { StatusCodes } = require('http-status-codes')
+const WebError = require('../models/webError')
 
 function verificarCampoRequerido(valor, mensaje) {
     if (!valor) {

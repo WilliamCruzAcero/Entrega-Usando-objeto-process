@@ -1,0 +1,29 @@
+type Query {
+    getUsers: [User]
+}
+
+type Mutation {
+    saveProduct(email: String!, product: ProductInput!): Boolean
+}
+
+type User {
+    id: ID!
+    name: String!
+    lastname: String!
+    email: String!
+    products: [Product]
+}
+
+type Product {
+    name: String!
+    image: String
+    price: Float!
+    amount: Int!
+}
+
+input ProductInput {
+    name: String!
+    image: String
+    price: Float
+    amount: Int
+}
