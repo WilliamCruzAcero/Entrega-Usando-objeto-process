@@ -1,14 +1,9 @@
-const { createJWTToken } = require("../../services/generarToken")
-const { iniciarSesion } = require("../../services/iniciarSesion,js")
+const { iniciarSesion } = require("../../services/iniciarSesion")
 
 const login = async () => {
 
-    const token = createJWTToken()
-
-    const login = iniciarSesion(token)
-
-    return login
-
+    const user = await iniciarSesion()
+    return user
 }
 
 module.exports = {

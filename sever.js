@@ -11,7 +11,7 @@ const express = require('express')
 const { conectDB } = require('./src/conectDB/conectDB');
 const { logger } = require('./src/models/loggerWinston');
 const { buildSchema } = require('graphql');
-const {getUsers, saveProduct, login} = require('./src/graphql/resolvers')
+const {getUsers, saveProduct, login, createUser} = require('./src/graphql/resolvers')
 
 class Server {
 
@@ -67,7 +67,8 @@ class Server {
         const root = {
             getUsers,
             saveProduct,
-            login
+            login,
+            createUser,
           }
 
         this.app.use(this.graphql, graphqlHTTP({
